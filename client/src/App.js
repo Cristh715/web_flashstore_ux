@@ -10,6 +10,7 @@ import Layout from './components/Layout/Layout.jsx'
 import FavoritesPage from './pages/Favorites.js';
 import Checkout from './pages/Checkout.js';
 import Historial from './pages/HistoryPurchase.js';
+import Categories from './pages/Categories.js';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/favoritos" element={<FavoritesPage />} />
         <Route path="/historial" element={<Historial />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/categorias" element={<Categories />} />
         <Route path="/catalogo">
           <Route index element={<Catalogo />} />
           <Route path="smartphones" element={<Catalogo category={1} title='Smartphones' />} />
