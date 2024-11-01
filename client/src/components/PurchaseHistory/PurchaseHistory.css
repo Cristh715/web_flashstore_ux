@@ -1,10 +1,10 @@
 .responsive-table {
     overflow-x: auto;
-}
-h2 {
-    margin-top: 50px;
-    color: var(--primary-color);
-    text-align: left;
+    h2 {
+        margin-top: 50px;
+        color: var(--primary-color);
+        text-align: left;
+    }
 }
 table {
     width: 100%;

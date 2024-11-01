@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useCartContext } from '../../contexts/CartContext';
-import { PiNotebookFill } from "react-icons/pi";
+import { CirclesThreePlus, Meteor, User, CalendarHeart, ClockCounterClockwise, GearSix, SignOut, ShoppingCartSimple, List } from "@phosphor-icons/react";
 import { Link, NavLink } from 'react-router-dom';
 import Cart from '../Cart/Cart';
 import './Header.css';
@@ -11,7 +11,7 @@ const Header = () => {
     const { products } = useCartContext();
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [isCartOpen, setCartOpen] = useState(false);
-    const [isNavOpen, setNavOpen] = useState(true);
+    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,28 +27,21 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleResize = () => {
-        const mediaQuery = window.matchMedia('(max-width: 952px)');
-        setNavOpen(!mediaQuery.matches);
-    };
-
-    useEffect(() => {
-        handleResize(); // Check on initial load
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     const toggleDropdown = () => setDropdownOpen(prev => !prev);
     const toggleCart = () => setCartOpen(prev => !prev);
-    const toggleNav = () => setNavOpen(prev => !prev);
-    const closeNav = () => setNavOpen(false);
+    const toggleMobileMenu = () => setMobileMenuOpen(prev => !prev);
+    const handleLogout = () => {
+        logout();
+        setDropdownOpen(false); 
+        setCartOpen(false);
+    };
 
     const totalItems = products.reduce((acc, product) => acc + product.cantidad, 0);
 
     return (
         <div className="header-all">
             <div className="header-top">
-                <p>Bienvenido a Flash Store</p>
+                <p>¡Bienvenid@ a <b>Flash Store</b> 🖐!</p>
                 <ul>
                     <li>
                         <a href="https://wa.link/z9fg3q" target='_blank' rel='noreferrer'>
@@ -65,63 +58,68 @@ const Header = () => {
             <header>
                 <div className="header-main">
                     <h1>
-                        <label htmlFor="check" className="checkbtn" onClick={toggleNav}>
-                            <i className="fa-solid fa-bars"></i>
-                        </label>
-                        <button className="nav-toggle action-item" onClick={toggleNav}>
-                            <i className="fa-solid fa-bars"></i>
-                        </button>
                         <Link className='imgLogo' to='/home'>
-                            <img src='/logo.png' alt="Logo" />
+                            <img src='/FlashStore_banner.webp' alt="Logo" />
                         </Link>
                     </h1>
-
-                    <form action="#" method="get">
-                        <div className="search-container">
-                            <input
-                                placeholder="Buscar"
-                                className="search-input"
-                                name="search"
-                                type="search"
-                            />
-                            <svg className="search-icon" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" fill="none">
-                                <path d="M21 21l-5.197-5.197A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z" strokeLinejoin="round" strokeLinecap="round"></path>
-                            </svg>
-                        </div>
-                    </form>
+                    <button className="mobile-menu-button" onClick={toggleMobileMenu}>
+                        <List size={28} color='#007bff' />
+                    </button>
+                    <section className={`tools-bar mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+                        <nav>
+                            <li>
+                                <NavLink to="/catalogo" >
+                                    <Meteor size={20} color='#007bff' weight='bold' />
+                                    Explorar
+                                </NavLink>
+                            </li>
+                            <li><NavLink to="/categorias" >
+                                <CirclesThreePlus size={20} color='#007bff' weight='bold' />
+                                Categorías
+                            </NavLink></li>
+                        </nav>
+                        <form action="#" method="get">
+                            <div className="search-container">
+                                <input placeholder="Buscar" className="search-input" name="search" type="search" />
+                                <svg className="search-icon" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 21l-5.197-5.197A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z" strokeLinejoin="round" strokeLinecap="round"></path>
+                                </svg>
+                            </div>
+                        </form>
+                    </section>
                     <section className='user-bar'>
                         <div className="user-menu">
                             {isLoggedIn ? (
                                 <div className="actions-container">
                                     <button className="user-icon" onClick={toggleDropdown}>
-                                        <i className="fa-solid fa-user"></i> ¡Bienvenido {userName}!
+                                        <User size={28} weight='bold' /><p>¡Bienvenido <br></br><b>{userName}</b>!</p>
                                     </button>
                                     {isDropdownOpen && (
                                         <div className="actions">
                                             <Link to="/favoritos" className="action-item">
-                                                <i className="fa-solid fa-heart"></i> Favoritos
+                                                <CalendarHeart size={20} /> Favoritos
                                             </Link>
                                             <Link to="/historial" className="action-item">
-                                            <PiNotebookFill /> Historial de compras
+                                                <ClockCounterClockwise size={20} />Historial de compras
                                             </Link>
                                             <Link to="/settings" className="action-item">
-                                                <i className="fa-solid fa-cog"></i> Configuración
+                                                <GearSix size={20} /> Configuración
                                             </Link>
-                                            <button className="action-item close-logout" onClick={logout}>
-                                                <i className="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
+                                            <button className="action-item close-logout" onClick={handleLogout}>
+                                                <SignOut size={20} /> Cerrar Sesión
                                             </button>
                                         </div>
                                     )}
                                 </div>
                             ) : (
-                                <Link to="/login" className="action-item">
-                                    Iniciar Sesión <i className="fa-solid fa-user"></i>
+                                <Link to="/login" className="login-button">
+                                    <User size={22} weight='bold' /> Iniciar Sesión
                                 </Link>
                             )}
                         </div>
                         <div className="cart-menu">
                             <button className="cart-icon" onClick={toggleCart}>
-                                Carrito <i className="fa-solid fa-shopping-cart"></i> {totalItems}
+                            <ShoppingCartSimple size={22} weight='bold' />{totalItems}
                             </button>
                             {isCartOpen && (
                                 <div className="cart-dropdown">
@@ -132,17 +130,6 @@ const Header = () => {
                     </section>
                 </div>
             </header>
-            <nav className={`nav-menu ${isNavOpen ? 'open' : ''}`}>
-                <input type="checkbox" id="check" />
-                <ul>
-                    <li><NavLink to="/home" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Inicio</NavLink></li>
-                    <li><NavLink to="/catalogo" end onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Explorar</NavLink></li>
-                    <li><NavLink to="/catalogo/smartphones" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Smartphones</NavLink></li>
-                    <li><NavLink to="/catalogo/smartwatches" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Smartwatch</NavLink></li>
-                    <li><NavLink to="/catalogo/tablets" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Tablets</NavLink></li>
-                    <li><NavLink to="/catalogo/accesorios" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Accesorios</NavLink></li>
-                </ul>
-            </nav>
         </div>
     );
 }

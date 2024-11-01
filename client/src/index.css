@@ -3,6 +3,7 @@
 :root {
   --primary-color: #007bff;
   --secondary-color: #076dd9;
+  --background-hover-color: #e6f2ff;
   --inactive-color: #8e8e8e;
   --primary-font: "Barlow", sans-serif, Arial;
 }
@@ -13,4 +14,15 @@ html{
 }
 *{
   font-family: var(--primary-font);
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 280px;
+  margin-top: 140px;
+}
+
+.body main {
+  padding: 2% 10%;
 }
