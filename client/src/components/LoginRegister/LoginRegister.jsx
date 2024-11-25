@@ -64,7 +64,7 @@ const LoginRegister = () => {
                         </div>
                         <button type="submit">Inicia sesión</button>
                         {error && <p className="error">{error}</p>}
-                        <p>No dispones de una cuenta? <a href="#" onClick={registerLink}>Registrate</a></p>
+                        <p>No dispones de una cuenta? <a href="##" onClick={registerLink}>Registrate</a></p>
                     </form>
                 </div>
 
@@ -94,7 +94,7 @@ const LoginRegister = () => {
                         </div>
                         <button type="submit">Registrar</button>
                         {error && <p className="error">{error}</p>}
-                        <p>Ya tienes cuenta? <a href="#" onClick={loginLink}>Inicia sesión</a></p>
+                        <p>Ya tienes cuenta? <a href="##" onClick={loginLink}>Inicia sesión</a></p>
                     </form>
                 </div>
             </div>

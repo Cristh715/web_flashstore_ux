@@ -75,9 +75,9 @@ const Home = () => {
             <BrandsContainer />
             <SectionLanding title="Ofertas" importantText="exclusivas"></SectionLanding>
             <div className='offers-images'>
-                <img src='./offer/offer1.png'></img>
-                <img src='./offer/offer2.png'></img>
-                <img src='./offer/offer3.png'></img>
+                <img src='./offer/offer1.png' alt='oferta1'></img>
+                <img src='./offer/offer2.png' alt='oferta2'></img>
+                <img src='./offer/offer3.png' alt='oferta3'></img>
             </div>
         </main>
     );
