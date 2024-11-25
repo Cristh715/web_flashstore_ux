@@ -68,6 +68,7 @@
 
 .mobile-menu.open {
   display: flex;
+  z-index: 2;
 }
 
 .imgLogo {
