@@ -6,13 +6,12 @@ import LoaderPage from '../components/LoaderPage/LoaderPage';
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const { selectedProduct, getProduct, error, updateQuantity } = useContext(ProductContext);
+  const { selectedProduct, getProduct, error } = useContext(ProductContext);
 
   useEffect(() => {
     const fetchProduct = async () => {
       await getProduct(productId);
     };
-    updateQuantity();
     fetchProduct();
   }, [productId, getProduct]);
 
