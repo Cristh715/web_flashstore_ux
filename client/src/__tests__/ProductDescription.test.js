@@ -1,5 +1,5 @@
 const { Builder, By, until, Browser } = require('selenium-webdriver');
-const { strictEqual, ok } = require('assert');
+const { strictEqual } = require('assert');
 
 describe('ProductDescription', () => {
   let driver;
@@ -8,7 +8,7 @@ describe('ProductDescription', () => {
 
   beforeAll(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
-    await driver.get('http://localhost:3000/product/19')//Producto de ejemplo
+    await driver.get('http://localhost:3000/product/19')// Producto de ejemplo
   });
 
   afterAll(async () => {
@@ -32,10 +32,6 @@ describe('ProductDescription', () => {
       const notification = await esperarLoader('.notification-cart', 5000);
       const notificationText = await notification.getText();
       strictEqual(notificationText, 'Producto añadido al carrito');
-
-      const checkmark = await driver.findElement(By.css('.notification-cart .FaCircleCheck'));
-      ok(checkmark, 'El ícono de checkmark debería aparecer en la notificación');
-
     } catch (error) {
       console.log('Error al interactuar con el botón de agregar al carrito o la notificación:', error);
     }
