@@ -15,7 +15,7 @@ const ProductPage = () => {
     fetchProduct();
   }, [productId, getProduct]);
 
-  if (!selectedProduct || selectedProduct.producto_id !== productId) {
+  if (!selectedProduct || parseInt(selectedProduct.producto_id) !== parseInt(productId)) {
     return <LoaderPage />;
   }else{
     document.title=`${selectedProduct.nombre}`;
