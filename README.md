@@ -5,6 +5,7 @@
  - Atuncar Yataco, Cristhian Paolo
  - Neira Carquin Rogger Kevin
  - Alejandro Santaria, Gian
+ - Layme Moya, Victor
 
 # README - Web flash Store
 ## Propósito del proyecto
