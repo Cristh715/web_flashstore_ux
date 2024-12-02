@@ -1,4 +1,21 @@
-# FlashStore - Grupo 5
+# Índice
+
+1. [FlashStore - Grupo 6](#flashstore---grupo-6)
+2. [Grupo 6 - Integrantes](#grupo-6---integrantes)
+3. [README - Web Flash Store](#readme---web-flash-store)
+   - [Propósito del Proyecto](#propósito-del-proyecto)
+   - [Objetivo](#objetivo)
+   - [Funcionalidades principales](#funcionalidades-principales)
+4. [Integración con Jenkins](#integración-con-jenkins)
+   - [Construcción Automática](#construcción-automática)
+   - [Análisis Estático](#análisis-estático)
+   - [Pruebas Unitarias](#pruebas-unitarias)
+   - [Pruebas Funcionales](#pruebas-funcionales)
+   - [Pruebas de Rendimiento](#pruebas-de-rendimiento)
+   - [Pruebas de Seguridad](#pruebas-de-seguridad)
+5. [Gestión de GitHub Issues](#gestión-de-github-issues)
+
+# FlashStore - Grupo 6
 - **Fecha**: 02/12/2024
 - **Versión**: v1.20
 
