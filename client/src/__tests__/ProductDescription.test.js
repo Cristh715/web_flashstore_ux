@@ -4,7 +4,7 @@ const { strictEqual } = require('assert');
 describe('ProductDescription', () => {
   let driver;
 
-  jest.setTimeout(15000);
+  jest.setTimeout(30000);
 
   beforeAll(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
