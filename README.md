@@ -1,4 +1,12 @@
-![image](https://github.com/user-attachments/assets/1e5ae5dd-ba3e-43ed-97e7-fa80515a7f95)# README - Web flash Store
+# Grupo 6 - Integrantes:
+ - Anaya Sánchez, Eros
+ - Lopez Salinas, Marco Antonio
+ - Marchena Tejada, Chesney Taichi
+ - Atuncar Yataco, Cristhian Paolo
+ - Neira Carquin Rogger Kevin
+ - Alejandro Santaria, Gian
+
+# README - Web flash Store
 ## Propósito del proyecto
 El propósito de proyecto, es realizar un ecommerce para una tienda de smartphones, tablets, accesorios, etc.
 Este proyecto está construido con React para el frontend y Node.js con Express para el backend. Utiliza MySQL como base de datos para gestionar la información de los productos, usuarios y pedidos.
