@@ -1,4 +1,4 @@
-# README - Web flash Store
+![image](https://github.com/user-attachments/assets/1e5ae5dd-ba3e-43ed-97e7-fa80515a7f95)# README - Web flash Store
 ## Propósito del proyecto
 El propósito de proyecto, es realizar un ecommerce para una tienda de smartphones, tablets, accesorios, etc.
 Este proyecto está construido con React para el frontend y Node.js con Express para el backend. Utiliza MySQL como base de datos para gestionar la información de los productos, usuarios y pedidos.
@@ -48,13 +48,7 @@ stage('Build') {
 **Herramienta/Framework:** SonarQube - Sonar Scanner
 
 #### Evidencia:
-```bash
-sonar-scanner -Dsonar.url=http://localhost:9000/ \
--Dsonar.login=squ_676343b0b6f1e9e1ee971e1da8b6c703b334b322 \
--Dsonar.projectKey=FlashStore \
--Dsonar.projectName=FlashStore \
--Dsonar.sources=.
-```
+<img src="images/sonar.png" width="700"/>
 
 #### Integración con Jenkins:
 ```groovy
@@ -90,6 +84,7 @@ stage('SonarQube Analysis ') {
   });
 
 ```
+<img src="images/pruebas_unitarias.png" width="700"/>
 
 #### Integración con Jenkins:
 ```groovy
@@ -106,7 +101,8 @@ stage('Run Unit Tests') {
 
 ---
 
-### Pruebas funcionales
+### Pruebas Funcionales
+
 **Herramienta/Framework:** Selenium y Jest
 
 #### Evidencia:
@@ -118,7 +114,7 @@ describe('ProductDescription', () => {
 
   beforeAll(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
-    await driver.get('http://localhost:3000/product/19')// Producto de ejemplo
+    await driver.get('http://localhost:3000/product/19'); // Producto de ejemplo
   });
 
   afterAll(async () => {
@@ -148,6 +144,8 @@ describe('ProductDescription', () => {
   });
 });
 ```
+<img src="images/pruebas_funcionales0.png" width="700"/>
+<img src="images/pruebas_funcionales1.png" width="700"/>
 
 #### Integración con Jenkins:
 ```groovy
@@ -163,4 +161,97 @@ stage('Run Functional Tests') {
 ```
 
 ---
+
+### Pruebas de Rendimiento
+
+**Herramienta:** Apache JMeter
+
+#### Evidencia:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Productos">
+        <intProp name="ThreadGroup.num_threads">10</intProp>
+        <intProp name="ThreadGroup.ramp_time">2</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Listar Productos">
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8000</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">api/productos/productos</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
+```
+
+#### Integración con Jenkins:
+```groovy
+environment {
+        JMETERT_HOME = 'C:\\Users\\USUARIO\\Documents\\apache-jmeter-5.6.3'
+        JMX_FILE = 'performance-test.jmx'
+        RESULTS_DIR = 'jmeter-results'
+}
+stage('Run Performance Tests') {
+    
+    steps {
+        script {
+            def timestamp = new Date().format("yyyyMMdd_HHmmss")
+            def resultsFile = "${WORKSPACE}\\${RESULTS_DIR}\\results_${timestamp}.jtl"
+            def reportDir = "${WORKSPACE}\\${RESULTS_DIR}\\report_${timestamp}"
+
+            bat """
+                 ${JMETERT_HOME}\\bin\\jmeter -n -t ${WORKSPACE}\\${JMX_FILE} -l ${resultsFile} -e -o ${reportDir}
+            """
+
+            publishHTML(target: [
+                reportName: 'JMeter Report',
+                reportDir: reportDir,
+                reportFiles: 'index.html',
+                keepAll: true
+            ])
+        }
+    }
+}
+```
+
+---
+
+### Pruebas de Seguridad
+
+#### Evidencia:
+![image](https://github.com/user-attachments/assets/c0c1bf37-9148-4c8d-8504-a8ad1aa0478c)
+---
+
+### Gestión de GitHub Issues
+
+#### Github Proyects:
+[Repositorio de Issues en GitHub](https://github.com/users/Cristh715/projects/2)
+
+#### Evidencia:
+![image](https://github.com/user-attachments/assets/01381fa9-b62b-4a79-aeee-88b43ad4c388)
+
+
 
