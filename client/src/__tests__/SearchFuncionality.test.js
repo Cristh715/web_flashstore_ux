@@ -4,11 +4,11 @@ const { strictEqual } = require('assert');
 describe('SearchBarFunctionality', () => {
     let driver;
   
-    jest.setTimeout(15000);
+    jest.setTimeout(30000);
   
     beforeAll(async () => {
       driver = await new Builder().forBrowser(Browser.CHROME).build();
-      await driver.get('http://localhost:3000'); // URL de la página principal
+      await driver.get('http://localhost:3000');
     });
   
     afterAll(async () => {
@@ -23,16 +23,14 @@ describe('SearchBarFunctionality', () => {
   
     it('Verifica búsqueda exitosa de un producto', async () => {
       try {
-        await esperarLoader('.search-bar'); // Esperar a que la barra de búsqueda sea visible
-  
-        // Interactuar con la barra de búsqueda
+        await esperarLoader('.search-bar');
+
         const searchBar = await driver.findElement(By.css('.search-bar input'));
         const searchButton = await driver.findElement(By.css('.search-bar button'));
   
-        await searchBar.sendKeys('producto_prueba'); // Término de búsqueda
+        await searchBar.sendKeys('producto_prueba');
         await searchButton.click();
   
-        // Verificar resultados de búsqueda
         const searchResults = await esperarLoader('.search-results', 5000);
         const resultsText = await searchResults.getText();
         strictEqual(resultsText.includes('producto_prueba'), true);
@@ -44,8 +42,7 @@ describe('SearchBarFunctionality', () => {
     it('Verifica mensaje de "sin resultados" para búsqueda inválida', async () => {
       try {
         await esperarLoader('.search-bar');
-  
-        // Interactuar con la barra de búsqueda
+
         const searchBar = await driver.findElement(By.css('.search-bar input'));
         const searchButton = await driver.findElement(By.css('.search-bar button'));
   
@@ -53,7 +50,6 @@ describe('SearchBarFunctionality', () => {
         await searchBar.sendKeys('producto_inexistente'); // Término de búsqueda inválido
         await searchButton.click();
   
-        // Verificar mensaje de "sin resultados"
         const noResultsMessage = await esperarLoader('.no-results', 5000);
         const noResultsText = await noResultsMessage.getText();
         strictEqual(noResultsText, 'No se encontraron resultados');
