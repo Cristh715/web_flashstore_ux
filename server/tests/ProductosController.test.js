@@ -1,4 +1,3 @@
-// tests/productosController.test.js
 const { handleObtenerProductos, handleObtenerProductoEspecifico, handleUpdateImgProduct } = require('../controllers/productosController');
 const { obtenerProductos, obtenerProductoEspecifico, updateImgProduct } = require('../models/productos.model');
 
