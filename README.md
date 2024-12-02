@@ -16,6 +16,12 @@ Este proyecto está construido con React para el frontend y Node.js con Express 
 Crear una plataforma funcional para la compra y venta de productos, asegurando la calidad mediante la integración de herramientas de construcción automática, análisis estático, pruebas unitarias, funcionales y de seguridad.
 
 ## Funcionalidades principales
+![image](https://github.com/user-attachments/assets/d622b233-9c49-4a46-af7b-62bd6b629e0e)
+
+![image](https://github.com/user-attachments/assets/6b7abd58-5f06-41e9-bf01-c336247a0f5e)
+
+![image](https://github.com/user-attachments/assets/90ac6677-0d44-42d9-8203-aeac374c6c90)
+
 
 ## Integración con Jenkins:
 
