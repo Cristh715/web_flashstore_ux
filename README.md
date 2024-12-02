@@ -1,4 +1,8 @@
-# Grupo 6 - Integrantes:
+# FlashStore - Grupo 5
+- **Fecha**: 02/12/2024
+- **Versión**: v1.20
+
+## Grupo 6 - Integrantes:
  - Anaya Sánchez, Eros
  - Lopez Salinas, Marco Antonio
  - Marchena Tejada, Chesney Taichi
