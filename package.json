@@ -1,0 +1,20 @@
+{
+  "name": "web_flashstore_ux",
+  "version": "1.0.0",
+  "description": "Proyect the Verification and Validation on Software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "assert": "^2.1.0",
+    "jest": "^29.7.0",
+    "selenium-webdriver": "^4.27.0"
+  },
+  "dependencies": {
+    "chromedriver": "^131.0.1"
+  }
+}
